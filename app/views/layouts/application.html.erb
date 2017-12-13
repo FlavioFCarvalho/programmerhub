@@ -8,6 +8,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% flash.each do |message_type, message| %>
+    <% if message_type == 'alert' %>
+      <%= javascript_tag "Materialize.toast('#{message}', 4000, 'red')" %>
+    <% else message_type == 'notice' %>
+      <%= javascript_tag "Materialize.toast('#{message}', 4000, 'green')" %>
+    <% end %>
+  <% end %>
+
   <body>
     <header>
       <%= render "shared/navbar" %>
